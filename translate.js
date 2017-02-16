@@ -48,6 +48,7 @@ if (words.length > 2) {
         });
         thisRequest.on('error', (e) => {
             log(`problem with request: ${e.message}`);
+            craeteSeparation();
         });
         thisRequest.end();
     });
