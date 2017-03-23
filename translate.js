@@ -22,7 +22,7 @@ function craeteSeparation () {
 }
 
 if (words.length > 2) {
-    words.splice(0, 2);
+    words.splice(0, 2).reverse();
     words.forEach((val, index) => {
         var thisRequest,
             thisChunk = '',
