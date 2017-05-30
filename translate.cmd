@@ -1,2 +1,2 @@
 @echo off
-node %~dp0/translate.js %1
+node %~dp0/Script-Translate/translate.js %1
