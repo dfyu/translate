@@ -1,8 +1,7 @@
 {
   "name": "richole-translate",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "translate english to chinese by YouDao API",
-  "main": "translate.js",
   "scripts": {},
   "repository": {
     "type": "git",
