@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 let http = require('http'),
     words = [].concat(process.argv),
     log = console.log,
