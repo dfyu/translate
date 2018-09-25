@@ -2,6 +2,7 @@
 let http = require('http'),
     words = [].concat(process.argv),
     log = console.log,
+    isSentence = false,
     defaultPort = 80
 
 function createOptions (translateStr) {
@@ -22,6 +23,16 @@ function craeteSeparation () {
 
 if (words.length > 2) {
     words.splice(0, 2).reverse()
+    words = words.filter(item => {
+        if (item === '-s') {
+            isSentence = true
+        } else {
+            return item
+        }
+    })
+    if (isSentence) {
+        words = [words.join(' ')]
+    }
     words.forEach((val, index) => {
         var thisRequest,
             thisChunk = '',
@@ -33,7 +44,9 @@ if (words.length > 2) {
                 thisChunk += chunk
             })
 
-            res.on('end', (chunk) => {
+            res.on('end', () => {
+                index === 0 && craeteSeparation()
+                log(val)
                 thisData = JSON.parse(thisChunk)
                 log(thisData.translation.join('  '))
                 if (thisData.basic && thisData.basic.explains) {
@@ -54,5 +67,7 @@ if (words.length > 2) {
         thisRequest.end()
     })
 } else {
-    log('请输入待翻译词语，多个词语请用空格隔开')
+    log('请输入待翻译词语，多个词语请用空格隔开, 若翻译句子加上参数 -s')
+    log('例如: translate hello')
+    log('例如: translate -s hello world')
 }
