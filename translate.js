@@ -1,9 +1,7 @@
-'use strict';
-var http = require('http'),
+let http = require('http'),
     words = [].concat(process.argv),
     log = console.log,
-    minProcessLength = 2,
-    defaultPort = 80;
+    defaultPort = 80
 
 function createOptions (translateStr) {
     return {
@@ -14,44 +12,46 @@ function createOptions (translateStr) {
         headers: {
             'Content-Type': 'application/json'
         }
-    };
+    }
 }
 
 function craeteSeparation () {
-    log(new Array(60).join('='));
+    log(new Array(60).join('='))
 }
 
 if (words.length > 2) {
-    words.splice(0, 2).reverse();
+    words.splice(0, 2).reverse()
     words.forEach((val, index) => {
         var thisRequest,
             thisChunk = '',
-            thisData;
+            thisData
         thisRequest = http.request(createOptions(val), (res) => {
-            res.setEncoding('utf-8');
+            res.setEncoding('utf-8')
+
             res.on('data', (chunk) => {
-                thisChunk += chunk;
-            });
+                thisChunk += chunk
+            })
+
             res.on('end', (chunk) => {
-                thisData = JSON.parse(thisChunk);
-                log(thisData.translation.join('  '));
+                thisData = JSON.parse(thisChunk)
+                log(thisData.translation.join('  '))
                 if (thisData.basic && thisData.basic.explains) {
-                    log(thisData.basic.explains.join('\n'));
+                    log(thisData.basic.explains.join('\n'))
                 }
                 if (thisData.web) {
                     thisData.web.forEach((item) => {
-                        log(`${item.key}: ${item.value.join(',')}`);
-                    });
+                        log(`${item.key}: ${item.value.join(',')}`)
+                    })
                 }
-                craeteSeparation();
-            });
-        });
+                craeteSeparation()
+            })
+        })
         thisRequest.on('error', (e) => {
-            log(`problem with request: ${e.message}`);
-            craeteSeparation();
-        });
-        thisRequest.end();
-    });
+            log(`error: ${e.message}`)
+            craeteSeparation()
+        })
+        thisRequest.end()
+    })
 } else {
-    log(`请输入待翻译词语，多个词语请用空格隔开`);
+    log('请输入待翻译词语，多个词语请用空格隔开')
 }
