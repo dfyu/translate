@@ -1,18 +1,13 @@
 {
-  "name": "richole-translate",
-  "version": "1.0.4",
+  "name": "@dfyu/translate",
+  "version": "1.0.0",
   "description": "translate english to chinese by YouDao API",
-  "scripts": {},
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/RicholeYu/Script-Translate.git"
-  },
   "bin": {
-    "translate": "./bin/translate"
+    "translate": "./index.js"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/RicholeYu/Script-Translate/issues"
+    "url": "https://github.com/dfyu/tinypng/issues"
   },
-  "homepage": "https://github.com/RicholeYu/Script-Translate#readme"
+  "homepage": "https://github.com/dfyu/tinypng"
 }
