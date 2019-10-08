@@ -38,8 +38,8 @@ if (words.length > 0) {
                 craeteSeparation()
             })
         })
-        thisRequest.on("error", (e) => {
-            log(`error: ${e.message}`)
+        thisRequest.on("error", e => {
+            log(`error: ${e.toString()}`)
             craeteSeparation()
         })
         thisRequest.end()
