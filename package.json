@@ -1,6 +1,6 @@
 {
   "name": "@dfyu/translate",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "translate english to chinese by YouDao API",
   "bin": {
     "translate": "./index.js"
@@ -9,5 +9,10 @@
   "bugs": {
     "url": "https://github.com/dfyu/tinypng/issues"
   },
-  "homepage": "https://github.com/dfyu/tinypng"
+  "homepage": "https://github.com/dfyu/tinypng",
+  "dependencies": {
+    "@dfyu/sound": "^1.0.9",
+    "arg": "^5.0.2",
+    "node-fetch": "^2.6.7"
+  }
 }
