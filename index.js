@@ -37,7 +37,7 @@ async function translate (string) {
 }
 
 (async () => {
-  const reg = /^[a-zA-Z,.\s]+$/
+  const reg = /^[a-zA-Z,.\s-\'\"!\?\(\)\[\]\&0-9]+$/
 
   if (args && words.length > 0) {
     if (isSentence) {
