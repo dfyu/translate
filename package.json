@@ -1,9 +1,10 @@
 {
   "name": "@dfyu/translate",
-  "version": "1.0.7",
-  "description": "translate english to chinese by YouDao API",
+  "version": "1.0.8",
+  "description": "translate english to chinese",
   "bin": {
-    "translate": "./index.js"
+    "translate": "./index.js",
+    "t": "./index.js"
   },
   "license": "MIT",
   "bugs": {

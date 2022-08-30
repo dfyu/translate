@@ -30,8 +30,12 @@ async function translate (string) {
     "body": `q=${encodeURIComponent(string)}&le=en&t=1&client=web&keyfrom=webdict`,
     "method": "POST",
   }).then(res => res.json())
-  const result = data?.fanyi?.tran || data?.ce?.word?.trs?.[0]?.['#text'] || data?.ec?.word?.trs?.[0]?.tran
-  console.log(result)
+  let result = data?.fanyi?.tran || data?.ce?.word?.trs?.[0]?.['#text'] || data?.ec?.word?.trs?.[0]?.tran
+  let match = /^.+?(\s.+)(&type=.*)$/.exec(data?.fanyi?.voice || '')?.[1] || ''
+
+  result = match ? result.replace(match, '') : result
+
+  result && console.log(result)
 
   return result
 }
@@ -42,7 +46,11 @@ async function translate (string) {
   if (args && words.length > 0) {
     if (isSentence) {
       const string = words.join(' ')
-      const result = await translate(string)
+      let result = await translate(string)
+
+      if (!result && !reg.test(string)) {
+        result = await translate(string.replace(/[,，。.]/g, ' ').replace(/\s\s/g, ' '))
+      }
 
       if (openSound) {
         if (reg.test(string)) {
